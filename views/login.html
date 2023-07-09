@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login page for member</title>
+    <style>
+      form {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .form-item {
+        width: 100%;
+        margin-bottom: 2rem;
+        display: flex;
+      }
+      .title {
+        width: 2rem;
+        min-width: 5rem;
+      }
+    </style>
+  </head>
+  <body style="background-color: {{cssBackgroundColor}};">
+    <h1>MEMBER LOGIN</h1>
+    <form action="/login/user" method="post">
+      <div class="form-item">
+        <label class="title">Email</label>
+        <input id="email" name="email" type="email" />
+      </div>
+      <div class="form-item">
+        <label class="title">Password</label>
+        <input name="password" type="password" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
