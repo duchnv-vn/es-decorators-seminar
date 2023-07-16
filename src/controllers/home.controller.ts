@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import {
-  checkAuth,
+  checkAuth_1,
   observeConstructor,
   changePropertyOfClass,
   ReadOnly,
   checkParameter,
+  checkAuth_2,
 } from "../decorators/class-decorator";
 
 // @changePropertyOfClass
@@ -12,10 +13,16 @@ import {
 export class HomeController {
   constructor(dateInput?: any) {}
 
-  // @checkAuth
+  @checkAuth_2
+  @checkAuth_1
   home(req: Request, res: Response) {
     return res.send("home page");
   }
+
+  // @checkAuth
+  // home = (req: Request, res: Response) => {
+  //   return res.send("home page");
+  // };
 
   loginView(req: Request, res: Response) {
     return res.render("login.html", {

@@ -43,15 +43,43 @@ export function checkAuth2(target: any, name: string, descriptor: any) {
   }
 }
 
-// export function checkAuth(arg: any) {
-//   return function (target: any, name: any, descriptor: any) {
-//     // Do something...
-//     return descriptor;
-//   };
-// }
+export function checkAuth(target: any, name: any, descriptor: any) {
+  return descriptor;
+}
 
-export function checkAuth(...args: any[]) {
-  return args[2];
+export function checkAuth_1(target: any, name: any, descriptor: any) {
+  const original = descriptor.value;
+  // console.log("------------------------");
+  // console.log("descriptor 1", descriptor);
+  // console.log("------------------------");
+  if (typeof original === "function") {
+    descriptor.value = function modifiedHomeFunction(...args: any[]) {
+      console.log("------------------------");
+      console.log(`Argument 1`, args[0]);
+      console.log("------------------------");
+
+      console.log("------------------------");
+      console.log(`Argument 2`, args[1]);
+      console.log("------------------------");
+
+      try {
+        const result = original.apply(this, args);
+        console.log(`Result: ${result /* JSON.stringify(result, null, 2) */}`);
+        return result;
+      } catch (e) {
+        console.log(`Error: ${e}`);
+        throw e;
+      }
+    };
+  }
+  return descriptor;
+}
+
+export function checkAuth_2(target: any, name: any, descriptor: any) {
+  console.log("------------------------");
+  console.log("descriptor 2", descriptor);
+  console.log("------------------------");
+  return descriptor;
 }
 
 export function observeConstructor<T extends { new (...args: any[]): {} }>(
